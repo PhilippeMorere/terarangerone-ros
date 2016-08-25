@@ -188,7 +188,7 @@ void TerarangerOne::dynParamCallback(const terarangerone::TerarangerOneConfig &c
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "terarangerone");
-  terarangerone::TerarangerOne tera_bee();
+  terarangerone::TerarangerOne tera_bee;
   ros::spin();
 
   return 0;
