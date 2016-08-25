@@ -44,11 +44,13 @@ namespace terarangerone
 TerarangerOne::TerarangerOne()
 {
   // Get paramters
+  std::string topicname;
   ros::NodeHandle private_node_handle_("~");
   private_node_handle_.param("portname", portname_, std::string("/dev/ttyUSB0"));
+  private_node_handle_.param("topicname", topicname, std::string("terarangerone"));
 
   // Publishers
-  range_publisher_ = nh_.advertise<sensor_msgs::Range>("terarangerone", 1);
+  range_publisher_ = nh_.advertise<sensor_msgs::Range>(topicname, 1);
 
   // Create serial port
   serial_port_ = new SerialPort();
@@ -185,7 +187,7 @@ void TerarangerOne::dynParamCallback(const terarangerone::TerarangerOneConfig &c
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "terarangerone");
-  terarangerone::TerarangerOne tera_bee;
+  terarangerone::TerarangerOne tera_bee();
   ros::spin();
 
   return 0;
